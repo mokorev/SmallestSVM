@@ -426,7 +426,7 @@ int DriverEntry(struct _DRIVER_OBJECT* DriverObject, struct _UNICODE_STRING* Reg
     _mm_mfence();    // 必须加上内存屏障以抵御乱序执行导致的未知现象
     unsigned long long ret_vmm = *(unsigned long long*)((char*)malloc + 0x70);
     DbgPrint("VMEXIT: 0x%llx\n",ret_vmm);
-
+/*
     // 回收内存
     _mm_mfence();
     MmFreeContiguousMemory(pt_virtual);
@@ -438,7 +438,7 @@ int DriverEntry(struct _DRIVER_OBJECT* DriverObject, struct _UNICODE_STRING* Reg
     MmFreeContiguousMemory(cr3_virtual);
     MmFreeContiguousMemory(host_save_addr);
     MmFreeContiguousMemory(malloc);
-
+*/
 go_out:
     DriverObject->DriverUnload = DriverUnload;
     return 0;

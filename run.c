@@ -354,7 +354,7 @@ int DriverEntry(struct _DRIVER_OBJECT* DriverObject, struct _UNICODE_STRING* Reg
     gdt(&gdt_virtual, 0x20, &long_kernel_data);
     gdt(&gdt_virtual, 0x28, &long_ss_data);
 
-    *(unsigned int*)((char*)malloc + 0x64 + 0x400) = 0xFFFF;
+    *(unsigned int*)((char*)malloc + 0x64 + 0x400) = 0xFFFF;        // 只实现了16 bits
     *(unsigned long long*)((char*)malloc + 0x68 + 0x400) = 0x3000;
 
     // 配置IDTR
@@ -370,7 +370,7 @@ int DriverEntry(struct _DRIVER_OBJECT* DriverObject, struct _UNICODE_STRING* Reg
     idt(&idt_virtual, 13, &idte);
     idt(&idt_virtual, 14, &idte);
 
-    *(unsigned int*)((char*)malloc + 0x84 + 0x400) = 0xFFFF;
+    *(unsigned int*)((char*)malloc + 0x84 + 0x400) = 0xFFFF;        // 只实现了16 bits
     *(unsigned long long*)((char*)malloc + 0x88 + 0x400) = 0x4000;
 
    // 配置TR
@@ -380,7 +380,7 @@ int DriverEntry(struct _DRIVER_OBJECT* DriverObject, struct _UNICODE_STRING* Reg
     tss.type = 9;
     tss.S = 0;
     tss.G = 1;
-    tss.limit = 0xFFFFFFFF;
+    tss.limit = 0xFFFFF;
     tss.long_base_addr = 0x5000;
 
     gdt(&gdt_virtual, 0x30, &tss);
@@ -389,7 +389,7 @@ int DriverEntry(struct _DRIVER_OBJECT* DriverObject, struct _UNICODE_STRING* Reg
 
     *(short*)((char*)malloc + 0x90 + 0x400) = 0x30;
     *(short*)((char*)malloc + 0x92 + 0x400) = 0x889;
-    *(unsigned int*)((char*)malloc + 0x94 + 0x400) = 0xFFFFFFFF;
+    *(unsigned int*)((char*)malloc + 0x94 + 0x400) = 0xFFFFF;
     *(unsigned long long*)((char*)malloc + 0x98 + 0x400) = 0x5000;
 
     // ASID设置

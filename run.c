@@ -237,7 +237,7 @@ int DriverEntry(struct _DRIVER_OBJECT* DriverObject, struct _UNICODE_STRING* Reg
     *(unsigned long long*)((char*)malloc + 0x158 + 0x400) = cr0;
 
     // 设置EFER
-    *(unsigned long long*)((char*)malloc + 0xD0 + 0x400) = 0x1100;
+    *(unsigned long long*)((char*)malloc + 0xD0 + 0x400) = 0x1100;    // SVME如果没有开启，vmexit将会以-1退出码退出
 
     // 设置CR4
     unsigned long long cr4 = 0x20;

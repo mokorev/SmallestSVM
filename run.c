@@ -83,7 +83,7 @@ int gdt(void** gdt_p, unsigned int selector, struct segment* segment_p) {
         }
         unsigned int tail = (segment.limit & 0xFFFF) + ((segment.long_base_addr & 0xFFFF) << 16);
         unsigned short head_tail = ((segment.long_base_addr >> 16) & 0xFF) + ((segment.type & 0xF) << 8) + ((segment.S & 1) << 12) + ((segment.DPL & 3) << 13) + ((segment.P & 1) << 15);
-        unsigned int head_head = ((segment.limit >> 16) & 0xF) + ((segment.AVL & 1) << 4) + ((segment.G & 1) << 7) + ((segment.legacy_base_addr >> 24 & 0xFF) << 8);
+        unsigned int head_head = ((segment.limit >> 16) & 0xF) + ((segment.AVL & 1) << 4) + ((segment.G & 1) << 7) + ((segment.long_base_addr >> 24 & 0xFF) << 8);
         unsigned long long head = (head_head << 16) | head_tail;
         unsigned long long tail_descriptor = (head << 32) | tail;
         unsigned long long head_descriptor = segment.long_base_addr >> 32;

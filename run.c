@@ -212,25 +212,25 @@ int DriverEntry(struct _DRIVER_OBJECT* DriverObject, struct _UNICODE_STRING* Reg
     *(unsigned short*)((char*)malloc + 0x10 + 0x400) = 0x10;
     *(unsigned short*)((char*)malloc + 0x12 + 0x400) = 0xA9A;  //bit0 -> type :: S DPL P :: AVL L D/B G :: Reserved  -> bit15
     *(unsigned int*)((char*)malloc + 0x14 + 0x400) = 0xFFFFF;
-    *(unsigned int*)((char*)malloc + 0x18 + 0x400) = 0x12345678;
+    *(unsigned long long*)((char*)malloc + 0x18 + 0x400) = 0x12345678;
 
     // 设置SS
     *(unsigned short*)((char*)malloc + 0x20 + 0x400) = 0x28;
     *(unsigned short*)((char*)malloc + 0x22 + 0x400) = 0x896;
     *(unsigned int*)((char*)malloc + 0x24 + 0x400) = 0xFFFFF;
-    *(unsigned int*)((char*)malloc + 0x28 + 0x400) = 0x12345678;
+    *(unsigned long long*)((char*)malloc + 0x28 + 0x400) = 0x12345678;
 
     // 设置ES
     *(unsigned short*)((char*)malloc + 0x0 + 0x400) = 0x20;
     *(unsigned short*)((char*)malloc + 0x2 + 0x400) = 0x892;
     *(unsigned int*)((char*)malloc + 0x4 + 0x400) = 0xFFFFF;
-    *(unsigned int*)((char*)malloc + 0x8 + 0x400) = 0x12345678;
+    *(unsigned long long*)((char*)malloc + 0x8 + 0x400) = 0x12345678;
 
     // 设置DS
     *(unsigned short*)((char*)malloc + 0x30 + 0x400) = 0x20;
     *(unsigned short*)((char*)malloc + 0x32 + 0x400) = 0x892;
     *(unsigned int*)((char*)malloc + 0x34 + 0x400) = 0xFFFFF;
-    *(unsigned int*)((char*)malloc + 0x38 + 0x400) = 0x12345678;
+    *(unsigned long long*)((char*)malloc + 0x38 + 0x400) = 0x12345678;
 
     // 设置CR0
     unsigned long long cr0 = 0x80000021;
